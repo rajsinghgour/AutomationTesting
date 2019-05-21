@@ -1,0 +1,124 @@
+package APITesting.com.org.api;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import com.jayway.restassured.response.Response;
+
+import static com.jayway.restassured.RestAssured.*;
+
+public class WeatherGetRequest {
+	/**
+	 * First test how to use Get Request and Response Validation through Rest
+	 * Assured
+	 */
+	@Test
+	public void Test_001() {
+		/*
+		 * Response resp = when().
+		 * get("api.openweathermap.org/data/2.5/forecast/hourly?id=524901  ");
+		 */
+
+		System.setProperty("https.proxyHost", "localhost");
+		System.setProperty("https.proxyPort", "8080");
+
+		Response resp = when().get(
+				"https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6907d289e10d714a6e88b30761fae22");
+
+		// "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6907d289e10d714a6e88b30761fae22");
+
+		System.out.println(resp.statusCode());
+
+		Assert.assertEquals(resp.statusCode(), 200);
+	}
+
+	/**
+	 * How to use parameters with Rest Assured
+	 */
+
+	@Test
+	public void Test_002() {
+		Response resp = given().param("q", "Bangalore").param("appid", "b6907d289e10d714a6e88b30761fae22").when()
+				.get("https://samples.openweathermap.org/data/2.5/weather");
+
+		System.out.println(resp.statusCode());
+
+		Assert.assertEquals(resp.statusCode(), 200);
+
+		if (resp.getStatusCode() == 200) {
+			System.out.println("API's is workign fine");
+		} else {
+			System.out.println("APIs are not working fine");
+		}
+	}
+
+	/**
+	 * Simple Rest Assured given, when, then usage
+	 */
+
+	@Test
+	public void Test_003() {
+		given().param("q", "Bangalore").param("appid", "b6907d289e10d714a6e88b30761fae22").when()
+				.get("https://samples.openweathermap.org/data/2.5/weather").then().assertThat().statusCode(200);
+	}
+
+	/**
+	 * How to use Test Parameters with Rest Assured.
+	 */
+
+	@Test
+	public void Test_004() {
+		Response resp = given().param("q", "Gurgaon").param("appid", "b6907d289e10d714a6e88b30761fae22").when()
+				.get("https://samples.openweathermap.org/data/2.5/weather");
+
+		int code = resp.getStatusCode();
+		Assert.assertEquals(code, 200);
+	}
+
+	/**
+	 * Get complete Response message and can validate any specific parameter in that
+	 */
+	@Test
+	public void Test_005() {
+		Response resp = given().param("id", "2172797").param("appid", "b6907d289e10d714a6e88b30761fae22").when()
+				.get("https://samples.openweathermap.org/data/2.5/weather");
+
+		// this will return complete response data
+		System.out.println("Complete Response" + resp.asString());
+		Assert.assertEquals(resp.getStatusCode(), 200);
+	}
+
+	@Test
+	public void Test_006() {
+		given().param("zip", "94040").param("appid", "b6907d289e10d714a6e88b30761fae22").when()
+				.get("https://samples.openweathermap.org/data/2.5/weather").then().assertThat().statusCode(200);
+	}
+	
+	@Test
+	public void Test_RestAPI()
+	{
+		Response resp = given().
+				param("id", "2172797").
+				param("appid", "b6907d289e10d714a6e88b30761fae22").
+				when().get("https://samples.openweathermap.org/data/2.5/weather");
+		
+		System.out.println(resp.asString());
+		
+		Assert.assertEquals(resp.statusCode(), 200);
+	}
+	
+	/**
+	 * How to get value from JSON response & Also How to check response is if JSON type
+	 */
+	@Test
+	public void weatherReport_JsonResponse()
+	{
+		
+	}
+	
+	
+	
+	
+	
+
+}

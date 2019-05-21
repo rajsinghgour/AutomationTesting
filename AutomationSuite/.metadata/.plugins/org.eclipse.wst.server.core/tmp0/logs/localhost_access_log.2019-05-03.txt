@@ -1,0 +1,7 @@
+127.0.0.1 - - [03/May/2019:11:26:24 +0530] "GET / HTTP/1.1" 404 1074
+127.0.0.1 - - [03/May/2019:11:56:04 +0530] "CONNECT samples.openweathermap.org:443 HTTP/1.1" 400 1160
+127.0.0.1 - - [03/May/2019:12:58:55 +0530] "CONNECT samples.openweathermap.org:443 HTTP/1.1" 400 1160
+127.0.0.1 - - [03/May/2019:13:01:00 +0530] "CONNECT samples.openweathermap.org:443 HTTP/1.1" 400 1160
+127.0.0.1 - - [03/May/2019:13:01:36 +0530] "CONNECT samples.openweathermap.org:443 HTTP/1.1" 400 1160
+127.0.0.1 - - [03/May/2019:13:03:05 +0530] "CONNECT samples.openweathermap.org:443 HTTP/1.1" 400 1160
+127.0.0.1 - - [03/May/2019:13:03:21 +0530] "CONNECT samples.openweathermap.org:443 HTTP/1.1" 400 1160
